@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + React + TS</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+      }
+
+      html {
+        background-color: #f9f9f9;
+      }
+
+      .app-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      .app {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        width: 600px;
+        height: 500px;
+        background-color: #ddd;
+        border-radius: 8px;
+        box-shadow: 0px 0px 0px 10px rgb(40, 40, 40);
+        font-family: sans-serif;
+        text-align: center;
+      }
+
+      .app::after {
+        content: "";
+        position: absolute;
+        bottom: 4px;
+        right: 4px;
+        width: 211px;
+        height: 30px;
+        background: url(https://tienda.mercadona.es/v427/static/media/logo-horizontal.fdae39d8.svg);
+        background-repeat: no-repeat;
+        transform: scale(0.5);
+        transform-origin: 100% 100%;
+      }
+
+      /* DISPLAY */
+
+      .display {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 24px;
+        width: 100%;
+        height: 110px;
+        padding: 16px 32px;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+        background-color: rgb(60, 60, 60);
+      }
+
+      .display label {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+        background-color: transparent;
+        border: 0;
+        color: white;
+      }
+
+      .display input {
+        width: inherit;
+        padding: 0 4px;
+        margin-top: 4px;
+        background-color: transparent;
+        border: 0;
+        border-radius: 8px;
+        color: white;
+        font-size: 3rem;
+        text-align: right;
+      }
+
+      .display input:focus {
+        background-color: rgba(0, 0, 0, 0.4);
+        outline: none;
+      }
+
+      .display label:nth-child(1)::after {
+        content: "kg";
+        position: absolute;
+        top: 0px;
+        right: 8px;
+        opacity: 0.5;
+      }
+
+      .display label:nth-child(2)::after {
+        content: "€/kg";
+        position: absolute;
+        top: 0px;
+        right: 8px;
+        opacity: 0.5;
+      }
+
+      .display label:nth-child(3)::after {
+        content: "€";
+        position: absolute;
+        top: 0px;
+        right: 8px;
+        opacity: 0.5;
+      }
+
+      /* CONTROLS */
+
+      .controls {
+        display: flex;
+        width: 100%;
+        height: 390px;
+      }
+
+      .controls > .products {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        width: 100%;
+        max-width: 372px;
+        height: 100%;
+        border-bottom-left-radius: 8px;
+        border-top: 1px solid rgb(120, 120, 120);
+        overflow: hidden;
+      }
+
+      .controls > .products button {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-sizing: border-box;
+        font-size: 2rem;
+        color: rgb(180, 180, 180);
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        border: 1px solid rgb(200, 200, 200);
+        background-color: white;
+        cursor: pointer;
+        overflow: hidden;
+      }
+
+      .controls > .products img {
+        width: 100%;
+        transform: scale(0.8);
+        transition: 0.2s;
+      }
+
+      .controls > .products button:hover img {
+        transform: scale(0.9);
+      }
+
+      .controls > .products button :active img {
+        transform: scale(0.95);
+      }
+
+      .controls > .products button::after {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        content: "";
+        background-color: rgba(0, 0, 0, 0);
+        transition: 0.3s;
+      }
+
+      .controls > .products button:hover::after {
+        background-color: rgba(0, 0, 0, 0.05);
+      }
+
+      .controls > .products button:active::after {
+        background-color: rgba(0, 0, 0, 0.1);
+      }
+
+      /* PRODUCT LIST */
+
+      .controls > .sidebar {
+        flex: 1;
+        height: 100%;
+        padding-bottom: 32px;
+        background-color: rgb(220, 220, 220);
+        border-top: 1px solid rgb(120, 120, 120);
+        border-bottom-right-radius: 8px;
+        text-align: center;
+      }
+
+      .controls > .sidebar > div:nth-child(1) {
+        display: flex;
+      }
+
+      .controls > .sidebar button {
+        flex: 1;
+        height: 64px;
+        background-color: rgb(255, 255, 255);
+        border: 1px solid rgb(200, 200, 200);
+        font-size: 1rem;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      .controls > .sidebar button:hover {
+        background-color: rgb(240, 240, 240);
+      }
+
+      .controls > .sidebar button:active {
+        background-color: rgb(230, 230, 230);
+      }
+
+      .error {
+        position: absolute;
+        padding: 4px 4rem;
+        background-color: #c71818c4;
+        border-radius: 8px;
+        color: white;
+        left: 50%;
+        transform: translate(-50%, 2px);
+      }
+
+      .controls > .sidebar > div:not(:first-child) {
+        font-weight: bold;
+        margin: 0;
+        padding: 0;
+        padding: 16px 0;
+        border-bottom: 1px dashed rgba(0, 0, 0, 0.2);
+      }
+
+      .controls > .sidebar > ul {
+        font-size: 0.75rem;
+        margin: 0;
+        padding: 0;
+      }
+
+      .controls > .sidebar > ul > li {
+        list-style-type: none;
+        padding: 8px 0;
+        border-bottom: 1px dashed rgba(0, 0, 0, 0.2);
+      }
+
+      .controls > .sidebar > ul > li:nth-child(2n + 1) {
+        background-color: rgba(0, 0, 0, 0.03);
+      }
+
+      /* Chrome, Safari, Edge, Opera */
+      input::-webkit-outer-spin-button,
+      input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+
+      /* Firefox */
+      input[type="number"] {
+        -moz-appearance: textfield;
+      }
+    </style>
+  </body>
+</html>
