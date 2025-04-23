@@ -42,7 +42,6 @@ it("should see the scale app", () => {
 it("should be able to introduce a weight", async () => {
   render(<App />);
 
-  // Weigh a fruit
   const weightInput = screen.getByLabelText("Peso:");
   await userEvent.type(weightInput, "2");
 
@@ -52,29 +51,22 @@ it("should be able to introduce a weight", async () => {
 it("should be able to select a fruit and see its price", async () => {
   render(<App />);
 
-  // Clicks on the watermelon button
   const watermelonButton = screen.getByLabelText("Sandía");
   await userEvent.click(watermelonButton);
 
-  // Gets the price input
   const priceInput = screen.getByLabelText("Precio:");
   expect(priceInput).toHaveValue(0.93);
 });
 
-it.skip("should calculate the total", () => {
+it("should calculate the total", async() => {
   render(<App />);
 
-  // Weigh the banana
   const weightInput = screen.getByLabelText("Peso:");
-  userEvent.type(weightInput, "2");
-  // Clicks on the banana button
+  await userEvent.type(weightInput, "2");
   const bananaButton = screen.getByLabelText("Plátano");
-  userEvent.click(bananaButton);
-  // Clicks on the calculate button
+  await userEvent.click(bananaButton);
   const calculateButton = screen.getByText("Calcular");
-  userEvent.click(calculateButton);
-
-  // Gets the total input
+  await userEvent.click(calculateButton);
   const totalInput = screen.getByLabelText("Total:");
   expect(totalInput).toHaveValue(3.38);
 });

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import {useRef, useState} from "react";
 import products from "./products.json";
 import { Product } from "./types";
 
@@ -8,16 +8,23 @@ const NO_ERROR = false;
 const App = () => {
   const [error, setError] = useState(NO_ERROR);
   const [chosenProductPrice, setChosenProductPrice] = useState(0);
+  const [total, setTotal] = useState(0);
 
+  const weightRef =useRef<HTMLInputElement>(null);
   const chooseProduct = (price: number) => {
     setChosenProductPrice(price);
   };
+
+  const calculateTotal = () => {
+    if(!weightRef?.current?.value) return
+    setTotal(chosenProductPrice * parseInt(weightRef.current.value))
+  }
 
   return (
     <div className="app">
       <div className="display">
         <label htmlFor="weight">Peso:</label>
-        <input id="weight" name="weight" type="number" placeholder="0,000" />
+        <input ref={weightRef} id="weight" name="weight" type="number" placeholder="0,000" />
 
         <label htmlFor="price">Precio:</label>
         <input
@@ -30,7 +37,7 @@ const App = () => {
         />
         <label>
           <span>Total:</span>
-          <input type="number" placeholder="0,000" disabled />
+          <input type="number" placeholder="0,000" disabled value={total} />
         </label>
       </div>
       <div className="controls">
@@ -50,7 +57,7 @@ const App = () => {
         </div>
         <div className="sidebar" data-testid="sidebar">
           <div>
-            <button>Calcular</button>
+            <button onClick={calculateTotal}>Calcular</button>
           </div>
         </div>
       </div>
