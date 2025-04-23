@@ -17,32 +17,32 @@ const App = () => {
 
   const calculateTotal = () => {
     if(!weightRef?.current?.value) return
-    setTotal(chosenProductPrice * parseInt(weightRef.current.value))
+    setTotal(chosenProductPrice * Number(weightRef.current.value))
   }
 
   return (
     <div className="app">
       <div className="display">
         <label htmlFor="weight">Peso:</label>
-        <input ref={weightRef} id="weight" name="weight" type="number" placeholder="0,000" />
+        <input ref={weightRef} id="weight" name="weight" type="number" placeholder="0,000"/>
 
         <label htmlFor="price">Precio:</label>
         <input
-          id="price"
-          type="number"
-          placeholder="0,000"
-          readOnly
-          disabled
-          value={chosenProductPrice}
+            id="price"
+            type="number"
+            placeholder="0,000"
+            readOnly
+            disabled
+            value={chosenProductPrice}
         />
-        <label>
-          <span>Total:</span>
-          <input type="number" placeholder="0,000" disabled value={total} />
+        <label htmlFor='total'>
+          Total:
         </label>
+        <input id='total' type="number" placeholder="0,000" disabled value={total}/>
       </div>
       <div className="controls">
         <div className="products">
-          {products.map((product: Product) => {
+        {products.map((product: Product) => {
             return (
               <button
                 key={product.id}
