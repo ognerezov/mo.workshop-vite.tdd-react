@@ -41,7 +41,11 @@ const App = () => {
         <div className="products">
           {products.map((product) => {
             return (
-              <button key={product.id} aria-label={product.name} value={product.price}>
+              <button
+                key={product.id}
+                aria-label={product.name}
+                value={product.price}
+              >
                 <img src={product.image} alt="" />
               </button>
             );
@@ -53,11 +57,9 @@ const App = () => {
           </div>
         </div>
       </div>
-      { error &&
-        <div className="error">Error</div>
-      }
+      {error && <div className="error">Error</div>}
     </div>
   );
 };
 
-export default App
+export default App;
