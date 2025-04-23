@@ -1,5 +1,6 @@
 import { useState } from "react";
 import products from "./products.json";
+import { Product } from "./types";
 
 const EMPTY = 0;
 const NO_ERROR = false;
@@ -39,7 +40,7 @@ const App = () => {
       </div>
       <div className="controls">
         <div className="products">
-          {products.map((product) => {
+          {products.map((product: Product) => {
             return (
               <button
                 key={product.id}
