@@ -71,14 +71,12 @@ it("should calculate the total", async() => {
   expect(totalInput).toHaveValue(3.38);
 });
 
-it.skip("should see an error when you calculate the total without the price", () => {
+it("should see an error when you calculate the total without the price", async() => {
   render(<App />);
 
-  // Weigh the banana
   const weightInput = screen.getByLabelText("Peso:");
-  userEvent.type(weightInput, "2");
-  // Clicks on the calculate button
-  userEvent.click(screen.getByText("Calcular"));
+  await userEvent.type(weightInput, "2");
+  await userEvent.click(screen.getByText("Calcular"));
 
   expect(screen.getByText("Error")).toBeInTheDocument();
 });
