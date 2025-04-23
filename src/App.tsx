@@ -7,32 +7,27 @@ const NO_ERROR = false;
 
 const App = () => {
   const [error, setError] = useState(NO_ERROR);
+  const [chosenProductPrice, setChosenProductPrice] = useState(0);
+
+  const chooseProduct = (price: number) => {
+    setChosenProductPrice(price);
+  };
 
   return (
     <div className="app">
       <div className="display">
-        <label>
-          <span>Peso:</span>
-          <input
-            type="number"
-            step="any"
-            min="0"
-            placeholder="0,000"
-            value={EMPTY}
-          />
-        </label>
-        <label>
-          <span>Precio:</span>
-          <input
-            type="number"
-            step="any"
-            min="0"
-            placeholder="0,000"
-            readOnly={true}
-            disabled={true}
-            value={EMPTY}
-          />
-        </label>
+        <label htmlFor="weight">Peso:</label>
+        <input id="weight" name="weight" type="number" placeholder="0,000" />
+
+        <label htmlFor="price">Precio:</label>
+        <input
+          id="price"
+          type="number"
+          placeholder="0,000"
+          readOnly
+          disabled
+          value={chosenProductPrice}
+        />
         <label>
           <span>Total:</span>
           <input type="number" placeholder="0,000" disabled />
@@ -46,6 +41,7 @@ const App = () => {
                 key={product.id}
                 aria-label={product.name}
                 value={product.price}
+                onClick={() => chooseProduct(product.price)}
               >
                 <img src={product.image} alt="" />
               </button>
