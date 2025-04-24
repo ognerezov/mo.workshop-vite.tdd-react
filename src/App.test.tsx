@@ -58,7 +58,7 @@ it("should be able to select a fruit and see its price", async () => {
   expect(priceInput).toHaveValue(0.93);
 });
 
-it("should calculate the total", async() => {
+it("should calculate the total", async () => {
   render(<App />);
 
   const weightInput = screen.getByLabelText("Peso:");
@@ -71,7 +71,7 @@ it("should calculate the total", async() => {
   expect(totalInput).toHaveValue(3.38);
 });
 
-it("should see an error when you calculate the total without the price", async() => {
+it("should see an error when you calculate the total without the price", async () => {
   render(<App />);
 
   const weightInput = screen.getByLabelText("Peso:");
