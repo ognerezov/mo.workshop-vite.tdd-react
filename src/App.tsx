@@ -4,6 +4,10 @@ import { Product } from "./types";
 
 const NO_ERROR = false;
 
+const validateInputs =(weight:number, chosenProductPrice:number) =>{
+  return !chosenProductPrice || !weight
+}
+
 const App = () => {
   const [error, setError] = useState(NO_ERROR);
   const [chosenProductPrice, setChosenProductPrice] = useState(0);
@@ -16,20 +20,15 @@ const App = () => {
   };
 
   const calculateTotal = () => {
-    checkPrice()
-    checkWeight()
-    const weight = weightRef?.current?.value
-    if(!weight) return
+    const weight = Number(weightRef?.current?.value)
+    const isError = validateInputs(weight, chosenProductPrice)
 
-    setTotal(chosenProductPrice * Number(weight))
-  }
+    setError(isError)
+    if(isError) {
+      return
+    }
 
-  const checkPrice =() =>{
-    if(!chosenProductPrice) setError(true)
-  }
-
-  const checkWeight =() =>{
-    if(!weightRef?.current?.value) setError(true)
+    setTotal(chosenProductPrice * weight)
   }
 
   return (
