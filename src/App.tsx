@@ -85,6 +85,7 @@ const App = () => {
           <div>
             <button onClick={calculateTotal}>Calcular</button>
           </div>
+          <div>{total} €</div>
           <div>
             <button onClick={clearInputs}>Limpiar</button>
           </div>

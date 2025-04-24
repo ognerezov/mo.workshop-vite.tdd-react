@@ -120,20 +120,16 @@ it("should clear the input values", async () => {
   expect(totalInput).toHaveValue(0);
 });
 
-it.skip("should add the last weighed price in the sidebar", () => {
+it("should add the last weighed price in the sidebar", async () => {
   render(<App />);
 
-  // Weigh the banana
   const weightInput = screen.getByLabelText("Peso:");
-  userEvent.type(weightInput, "2");
-  // Clicks on the banana button
+  await userEvent.type(weightInput, "2");
   const bananaButton = screen.getByLabelText("Plátano");
-  userEvent.click(bananaButton);
-  // Clicks on the calculate button
+  await userEvent.click(bananaButton);
   const calculateButton = screen.getByText("Calcular");
-  userEvent.click(calculateButton);
+  await userEvent.click(calculateButton);
 
-  // Gets the sidebar
   const sidebar = screen.getByTestId("sidebar");
   expect(sidebar).toHaveTextContent("3.38 €");
 });
