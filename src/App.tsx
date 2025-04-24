@@ -11,6 +11,7 @@ const App = () => {
   const [chosenProductPrice, setChosenProductPrice] = useState(0);
   const [weight, setWeight] = useState(0);
   const [total, setTotal] = useState(0);
+  const [totals, setTotals] = useState<number[]>([]);
 
   const chooseProduct = (price: number) => {
     setChosenProductPrice(price);
@@ -25,7 +26,9 @@ const App = () => {
       return;
     }
 
-    setTotal(chosenProductPrice * weight);
+    const totalPrice = chosenProductPrice * weight;
+    setTotal(totalPrice);
+    setTotals((totals) => [...totals, totalPrice]);
   };
 
   const clearInputs = () => {
@@ -81,15 +84,19 @@ const App = () => {
             );
           })}
         </div>
-        <div className="sidebar" data-testid="sidebar">
+        <aside className="sidebar">
           <div>
             <button onClick={calculateTotal}>Calcular</button>
           </div>
-          <div>{total} €</div>
+          <ul>
+            {totals.map((price) => (
+              <li>{price} €</li>
+            ))}
+          </ul>
           <div>
             <button onClick={clearInputs}>Limpiar</button>
           </div>
-        </div>
+        </aside>
       </div>
       {error && <div className="error">Error</div>}
     </div>

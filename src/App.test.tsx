@@ -130,33 +130,27 @@ it("should add the last weighed price in the sidebar", async () => {
   const calculateButton = screen.getByText("Calcular");
   await userEvent.click(calculateButton);
 
-  const sidebar = screen.getByTestId("sidebar");
+  const sidebar = screen.getByRole("complementary");
   expect(sidebar).toHaveTextContent("3.38 €");
 });
 
-it.skip("should create a list with the weighed prices in the sidebar", () => {
+it("should create a list with the weighed prices in the sidebar", async () => {
   render(<App />);
 
-  // Weigh the banana
   const weightInput = screen.getByLabelText("Peso:");
-  userEvent.type(weightInput, "2");
-  // Clicks on the banana button
+  await userEvent.type(weightInput, "2");
   const bananaButton = screen.getByLabelText("Plátano");
-  userEvent.click(bananaButton);
-  // Clicks on the calculate button
+  await userEvent.click(bananaButton);
   const calculateButton = screen.getByText("Calcular");
-  userEvent.click(calculateButton);
-  // Weigh the watermelon
-  userEvent.clear(weightInput);
-  userEvent.type(weightInput, "4");
-  // Clicks on the watermelon button
-  const watermelonButton = screen.getByLabelText("Sandía");
-  userEvent.click(watermelonButton);
-  // Clicks on the calculate button
-  userEvent.click(calculateButton);
+  await userEvent.click(calculateButton);
 
-  // Gets the sidebar
-  const sidebar = screen.getByTestId("sidebar");
+  await userEvent.clear(weightInput);
+  await userEvent.type(weightInput, "4");
+  const watermelonButton = screen.getByLabelText("Sandía");
+  await userEvent.click(watermelonButton);
+  await userEvent.click(calculateButton);
+
+  const sidebar = screen.getByRole("complementary");
   expect(sidebar).toHaveTextContent("3.38 €");
   expect(sidebar).toHaveTextContent("3.72 €");
 });
