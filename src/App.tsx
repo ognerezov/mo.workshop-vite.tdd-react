@@ -17,6 +17,7 @@ const App = () => {
 
   const calculateTotal = () => {
     checkPrice()
+    checkWeight()
     const weight = weightRef?.current?.value
     if(!weight) return
 
@@ -25,6 +26,10 @@ const App = () => {
 
   const checkPrice =() =>{
     if(!chosenProductPrice) setError(true)
+  }
+
+  const checkWeight =() =>{
+    if(!weightRef?.current?.value) setError(true)
   }
 
   return (

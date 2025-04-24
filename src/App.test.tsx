@@ -90,14 +90,12 @@ it("should clear the error when select a fruit", async () => {
   expect(screen.queryByText("Error")).not.toBeInTheDocument();
 });
 
-it.skip("should see an error if there is not weight", () => {
+it("should see an error if there is not weight", async () => {
   render(<App />);
 
-  // Clicks on the banana button
   const bananaButton = screen.getByLabelText("Plátano");
-  userEvent.click(bananaButton);
-  // Clicks on the calculate button
-  userEvent.click(screen.getByText("Calcular"));
+  await userEvent.click(bananaButton);
+  await userEvent.click(screen.getByText("Calcular"));
 
   expect(screen.getByText("Error")).toBeInTheDocument();
 });
