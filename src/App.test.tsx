@@ -113,7 +113,7 @@ it("should clear the input values", async () => {
   await userEvent.click(clearButton);
 
   const weightInput = screen.getByLabelText("Peso:");
-  expect(weightInput).toHaveValue(0);
+  expect(weightInput).not.toHaveValue();
   const priceInput = screen.getByLabelText("Precio:");
   expect(priceInput).toHaveValue(0);
   const totalInput = screen.getByLabelText("Total:");

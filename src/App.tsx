@@ -9,7 +9,7 @@ const validateInputs = (weight: number, chosenProductPrice: number) => {
 const App = () => {
   const [error, setError] = useState(false);
   const [chosenProductPrice, setChosenProductPrice] = useState(0);
-  const [weight, setWeight] = useState(0);
+  const [weight, setWeight] = useState("");
   const [total, setTotal] = useState(0);
   const [totals, setTotals] = useState<number[]>([]);
 
@@ -19,14 +19,15 @@ const App = () => {
   };
 
   const calculateTotal = () => {
-    const isError = validateInputs(weight, chosenProductPrice);
+    const weightNumber = Number(weight);
+    const isError = validateInputs(weightNumber, chosenProductPrice);
 
     setError(isError);
     if (isError) {
       return;
     }
 
-    const totalPrice = chosenProductPrice * weight;
+    const totalPrice = chosenProductPrice * weightNumber;
     setTotal(totalPrice);
     setTotals((totals) => [...totals, totalPrice]);
   };
@@ -35,39 +36,45 @@ const App = () => {
     setError(false);
     setChosenProductPrice(0);
     setTotal(0);
-    setWeight(0);
+    setWeight("");
   };
 
   return (
     <div className="app">
       <div className="display">
-        <label htmlFor="weight">Peso:</label>
-        <input
-          id="weight"
-          name="weight"
-          type="number"
-          placeholder="0,000"
-          value={weight}
-          onChange={(e) => setWeight(Number(e.target.value))}
-        />
+        <label htmlFor="weight">
+          Peso:
+          <input
+            id="weight"
+            name="weight"
+            type="number"
+            placeholder="0,000"
+            value={weight}
+            onChange={(e) => setWeight(e.currentTarget.value)}
+          />
+        </label>
 
-        <label htmlFor="price">Precio:</label>
-        <input
-          id="price"
-          type="number"
-          placeholder="0,000"
-          readOnly
-          disabled
-          value={chosenProductPrice}
-        />
-        <label htmlFor="total">Total:</label>
-        <input
-          id="total"
-          type="number"
-          placeholder="0,000"
-          disabled
-          value={total}
-        />
+        <label htmlFor="price">
+          Precio:
+          <input
+            id="price"
+            type="number"
+            placeholder="0,000"
+            readOnly
+            disabled
+            value={chosenProductPrice}
+          />
+        </label>
+        <label htmlFor="total">
+          Total:
+          <input
+            id="total"
+            type="number"
+            placeholder="0,000"
+            disabled
+            value={total}
+          />
+        </label>
       </div>
       <div className="controls">
         <div className="products">
