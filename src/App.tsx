@@ -1,4 +1,4 @@
-import {useRef, useState} from "react";
+import { useState} from "react";
 import products from "./products.json";
 import { Product } from "./types";
 
@@ -10,16 +10,15 @@ const validateInputs =(weight:number, chosenProductPrice:number) =>{
 const App = () => {
   const [error, setError] = useState(false);
   const [chosenProductPrice, setChosenProductPrice] = useState(0);
+  const [weight, setWeight] = useState(0);
   const [total, setTotal] = useState(0);
 
-  const weightRef = useRef<HTMLInputElement>(null);
   const chooseProduct = (price: number) => {
     setChosenProductPrice(price);
     setError(false)
   };
 
   const calculateTotal = () => {
-    const weight = Number(weightRef?.current?.value)
     const isError = validateInputs(weight, chosenProductPrice)
 
     setError(isError)
@@ -34,16 +33,21 @@ const App = () => {
     setError(false)
     setChosenProductPrice(0)
     setTotal(0)
-    if(weightRef.current) {
-      weightRef.current.value = '0'
-    }
+    setWeight(0)
   }
 
   return (
     <div className="app">
       <div className="display">
         <label htmlFor="weight">Peso:</label>
-        <input ref={weightRef} id="weight" name="weight" type="number" placeholder="0,000"/>
+        <input
+            id="weight"
+            name="weight"
+            type="number"
+            placeholder="0,000"
+            value={weight}
+            onChange={(e) => setWeight(Number(e.target.value))}
+        />
 
         <label htmlFor="price">Precio:</label>
         <input
