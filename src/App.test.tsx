@@ -81,13 +81,11 @@ it("should see an error when you calculate the total without the price", async()
   expect(screen.getByText("Error")).toBeInTheDocument();
 });
 
-it.skip("should clear the error when select a fruit", () => {
+it("should clear the error when select a fruit", async () => {
   render(<App />);
 
-  // Clicks on the calculate button
-  userEvent.click(screen.getByText("Calcular"));
-  // Clicks on the watermelon button
-  userEvent.click(screen.getByLabelText("Sandía"));
+  await userEvent.click(screen.getByText("Calcular"));
+  await userEvent.click(screen.getByLabelText("Sandía"));
 
   expect(screen.queryByText("Error")).not.toBeInTheDocument();
 });

@@ -12,6 +12,7 @@ const App = () => {
   const weightRef =useRef<HTMLInputElement>(null);
   const chooseProduct = (price: number) => {
     setChosenProductPrice(price);
+    setError(false)
   };
 
   const calculateTotal = () => {
