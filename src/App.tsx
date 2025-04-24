@@ -2,14 +2,13 @@ import {useRef, useState} from "react";
 import products from "./products.json";
 import { Product } from "./types";
 
-const NO_ERROR = false;
 
 const validateInputs =(weight:number, chosenProductPrice:number) =>{
   return !chosenProductPrice || !weight
 }
 
 const App = () => {
-  const [error, setError] = useState(NO_ERROR);
+  const [error, setError] = useState(false);
   const [chosenProductPrice, setChosenProductPrice] = useState(0);
   const [total, setTotal] = useState(0);
 
@@ -32,7 +31,7 @@ const App = () => {
   }
 
   const clearInputs = () => {
-    setError(NO_ERROR)
+    setError(false)
     setChosenProductPrice(0)
     setTotal(0)
     if(weightRef.current) {
