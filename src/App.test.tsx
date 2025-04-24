@@ -100,29 +100,22 @@ it("should see an error if there is not weight", async () => {
   expect(screen.getByText("Error")).toBeInTheDocument();
 });
 
-it.skip("should clear the input values", () => {
+it("should clear the input values", async () => {
   render(<App />);
 
-  // Weigh the banana
   const weightInputField = screen.getByLabelText("Peso:");
-  userEvent.type(weightInputField, "2");
-  // Clicks on the banana button
+  await userEvent.type(weightInputField, "2");
   const bananaButton = screen.getByLabelText("Plátano");
-  userEvent.click(bananaButton);
-  // Clicks on the calculate button
+  await userEvent.click(bananaButton);
   const calculateButton = screen.getByText("Calcular");
-  userEvent.click(calculateButton);
-  // Clicks on the clean button
+  await userEvent.click(calculateButton);
   const clearButton = screen.getByText("Limpiar");
-  userEvent.click(clearButton);
+  await userEvent.click(clearButton);
 
-  // Gets the weight input
   const weightInput = screen.getByLabelText("Peso:");
   expect(weightInput).toHaveValue(0);
-  // Gets the price input
   const priceInput = screen.getByLabelText("Precio:");
   expect(priceInput).toHaveValue(0);
-  // Gets the total input
   const totalInput = screen.getByLabelText("Total:");
   expect(totalInput).toHaveValue(0);
 });

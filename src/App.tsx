@@ -13,7 +13,7 @@ const App = () => {
   const [chosenProductPrice, setChosenProductPrice] = useState(0);
   const [total, setTotal] = useState(0);
 
-  const weightRef =useRef<HTMLInputElement>(null);
+  const weightRef = useRef<HTMLInputElement>(null);
   const chooseProduct = (price: number) => {
     setChosenProductPrice(price);
     setError(false)
@@ -29,6 +29,15 @@ const App = () => {
     }
 
     setTotal(chosenProductPrice * weight)
+  }
+
+  const clearInputs = () => {
+    setError(NO_ERROR)
+    setChosenProductPrice(0)
+    setTotal(0)
+    if(weightRef.current) {
+      weightRef.current.value = '0'
+    }
   }
 
   return (
@@ -69,6 +78,9 @@ const App = () => {
         <div className="sidebar" data-testid="sidebar">
           <div>
             <button onClick={calculateTotal}>Calcular</button>
+          </div>
+          <div>
+            <button onClick={clearInputs}>Limpiar</button>
           </div>
         </div>
       </div>
