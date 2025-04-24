@@ -2,7 +2,6 @@ import {useRef, useState} from "react";
 import products from "./products.json";
 import { Product } from "./types";
 
-const EMPTY = 0;
 const NO_ERROR = false;
 
 const App = () => {
@@ -17,8 +16,10 @@ const App = () => {
 
   const calculateTotal = () => {
     checkPrice()
-    if(!weightRef?.current?.value) return
-    setTotal(chosenProductPrice * Number(weightRef.current.value))
+    const weight = weightRef?.current?.value
+    if(!weight) return
+
+    setTotal(chosenProductPrice * Number(weight))
   }
 
   const checkPrice =() =>{
