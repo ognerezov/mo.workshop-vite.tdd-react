@@ -29,6 +29,10 @@ const App = () => {
 
     setError(isError);
     if (isError) {
+      if(chosenProductPrice === 0 && weightNumber === 0) {
+        setErrorMessage('Error: peso y precio son requeridos');
+        return;
+      }
       if(chosenProductPrice === 0) {
         setErrorMessage('Error: precio es requerido');
         return;

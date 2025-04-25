@@ -230,6 +230,14 @@ it("should identify the type of the error when the weight is 0", async () => {
   expect(screen.getByText("Error: peso es requerido")).toBeInTheDocument();
 });
 
+it("should identify the type of the error when the weight and price are 0", async () => {
+  render(<App />);
+
+  await userEvent.click(screen.getByText("Calcular"));
+
+  expect(screen.getByText("Error: peso y precio son requeridos")).toBeInTheDocument();
+});
+
 it.skip("should be able to clean the list", () => {});
 
 it.skip("should be able to remove a product from the list", () => {});
