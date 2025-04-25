@@ -33,6 +33,10 @@ const App = () => {
         setErrorMessage('Error: precio es requerido');
         return;
       }
+      if(weightNumber === 0) {
+        setErrorMessage('Error: peso es requerido');
+        return;
+      }
 
       return;
     }

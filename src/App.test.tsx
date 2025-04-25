@@ -97,7 +97,7 @@ it("should see an error if there is not weight", async () => {
   await userEvent.click(bananaButton);
   await userEvent.click(screen.getByText("Calcular"));
 
-  expect(screen.getByText("Error")).toBeInTheDocument();
+  expect(screen.getByText("Error: peso es requerido")).toBeInTheDocument();
 });
 
 it("should clear the input values", async () => {
@@ -210,7 +210,7 @@ it("should see the product name for each weighed product in the sidebar", async 
   expect(sidebar).toHaveTextContent("Sandía - 3.72 €");
 });
 
-it("should identify the type of the error", async () => {
+it("should identify the type of the error when the price is 0", async () => {
   render(<App />);
 
   const weightInput = screen.getByLabelText("Peso:");
@@ -218,6 +218,16 @@ it("should identify the type of the error", async () => {
   await userEvent.click(screen.getByText("Calcular"));
 
   expect(screen.getByText("Error: precio es requerido")).toBeInTheDocument();
+});
+
+it("should identify the type of the error when the weight is 0", async () => {
+  render(<App />);
+
+  const bananaButton = screen.getByLabelText("Plátano");
+  await userEvent.click(bananaButton);
+  await userEvent.click(screen.getByText("Calcular"));
+
+  expect(screen.getByText("Error: peso es requerido")).toBeInTheDocument();
 });
 
 it.skip("should be able to clean the list", () => {});
