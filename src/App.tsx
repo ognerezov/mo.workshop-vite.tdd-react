@@ -12,12 +12,13 @@ const App = () => {
   const [weight, setWeight] = useState("");
   const [total, setTotal] = useState(0);
   const [totals, setTotals] = useState<number[]>([]);
-
+  const [chosenProducts, setChosenProducts] = useState<string[]>([]);
   const totalSum = useMemo(() => totals.reduce((acc, curr) => acc + curr, 0), [totals]);
 
-  const chooseProduct = (price: number) => {
+  const chooseProduct = (price: number, name: string) => {
     setChosenProductPrice(price);
     setError(false);
+    setChosenProducts((chosenProducts) => [...chosenProducts, name]);
   };
 
   const calculateTotal = () => {
@@ -86,7 +87,7 @@ const App = () => {
                 key={product.id}
                 aria-label={product.name}
                 value={product.price}
-                onClick={() => chooseProduct(product.price)}
+                onClick={() => chooseProduct(product.price, product.name)}
               >
                 <img src={product.image} alt="" />
               </button>
@@ -98,8 +99,8 @@ const App = () => {
             <button onClick={calculateTotal}>Calcular</button>
           </div>
           <ul>
-            {totals.map((price) => (
-              <li>{price} €</li>
+            {totals.map((price, index) => (
+              <li key={index}>{chosenProducts[index]} - {price} €</li>
             ))}
           </ul>
           <div>
