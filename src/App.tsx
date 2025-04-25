@@ -12,10 +12,9 @@ const App = () => {
   const [chosenProductName, setChosenProductName] = useState<string>('');
   const [weight, setWeight] = useState("");
   const [total, setTotal] = useState(0);
-  const [totals, setTotals] = useState<number[]>([]);
-  const [chosenProducts, setChosenProducts] = useState<string[]>([]);
+  const [weightedProducts, setWeightedProducts] = useState<{name: string, price: number}[]>([]);
   
-  const totalSum = useMemo(() => totals.reduce((acc, curr) => acc + curr, 0), [totals]);
+  const totalSum = useMemo(() => weightedProducts.reduce((acc, weightedProduct) => acc + weightedProduct.price, 0), [weightedProducts]);
 
   const chooseProduct = (price: number, name: string) => {
     setChosenProductPrice(price);
@@ -34,8 +33,7 @@ const App = () => {
 
     const totalPrice = chosenProductPrice * weightNumber;
     setTotal(totalPrice);
-    setTotals((totals) => [...totals, totalPrice]);
-    setChosenProducts((chosenProducts) => [...chosenProducts, chosenProductName]);
+    setWeightedProducts((weightedProducts) => [...weightedProducts, {name: chosenProductName, price: totalPrice}]);
   };
 
   const clearInputs = () => {
@@ -102,8 +100,8 @@ const App = () => {
             <button onClick={calculateTotal}>Calcular</button>
           </div>
           <ul>
-            {totals.map((price, index) => (
-              <li key={index}>{chosenProducts[index]} - {price} €</li>
+            {weightedProducts.map((product, index) => (
+              <li key={index}>{product.name} - {product.price} €</li>
             ))}
           </ul>
           <div>
