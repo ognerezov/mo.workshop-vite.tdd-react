@@ -8,6 +8,7 @@ const validateInputs = (weight: number, chosenProductPrice: number) => {
 
 const App = () => {
   const [error, setError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('Error');
   const [chosenProductPrice, setChosenProductPrice] = useState(0);
   const [chosenProductName, setChosenProductName] = useState<string>('');
   const [weight, setWeight] = useState("");
@@ -28,6 +29,11 @@ const App = () => {
 
     setError(isError);
     if (isError) {
+      if(chosenProductPrice === 0) {
+        setErrorMessage('Error: precio es requerido');
+        return;
+      }
+
       return;
     }
 
@@ -112,7 +118,7 @@ const App = () => {
           </div>
         </aside>
       </div>
-      {error && <div className="error">Error</div>}
+      {error && <div className="error">{errorMessage}</div>}
     </div>
   );
 };
