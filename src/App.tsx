@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import products from "./products.json";
 import { Product } from "./types";
 
@@ -12,6 +12,8 @@ const App = () => {
   const [weight, setWeight] = useState("");
   const [total, setTotal] = useState(0);
   const [totals, setTotals] = useState<number[]>([]);
+
+  const totalSum = useMemo(() => totals.reduce((acc, curr) => acc + curr, 0), [totals]);
 
   const chooseProduct = (price: number) => {
     setChosenProductPrice(price);
@@ -101,7 +103,7 @@ const App = () => {
             ))}
           </ul>
           <div>
-            <span>Total - {totals.reduce((acc, curr) => acc + curr, 0)} €</span>
+            <span>Total - {totalSum} €</span>
           </div>
           <div>
             <button onClick={clearInputs}>Limpiar</button>
