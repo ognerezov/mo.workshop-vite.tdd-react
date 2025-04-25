@@ -155,29 +155,22 @@ it("should create a list with the weighed prices in the sidebar", async () => {
   expect(sidebar).toHaveTextContent("3.72 €");
 });
 
-it.skip("should display the total price of all the weighed prices", () => {
+it("should display the total price of all the weighed prices", async () => {
   render(<App />);
 
-  // Weigh the banana
   const weightInput = screen.getByLabelText("Peso:");
-  userEvent.type(weightInput, "2");
-  // Clicks the banana button
+  await userEvent.type(weightInput, "2");
   const bananaButton = screen.getByLabelText("Plátano");
-  userEvent.click(bananaButton);
-  // Clicks on the calculate button
+  await userEvent.click(bananaButton);
   const calculateButton = screen.getByText("Calcular");
-  userEvent.click(calculateButton);
-  // Weigh the watermelon
-  userEvent.clear(weightInput);
-  userEvent.type(weightInput, "4");
-  // Clicks on the watermelon button
+  await userEvent.click(calculateButton);
+  await userEvent.clear(weightInput);
+  await userEvent.type(weightInput, "4");
   const watermelonButton = screen.getByLabelText("Sandía");
-  userEvent.click(watermelonButton);
-  // Clicks on the calculate button
-  userEvent.click(calculateButton);
+  await userEvent.click(watermelonButton);
+  await userEvent.click(calculateButton);
 
-  // Gets the sidebar
-  const sidebar = screen.getByTestId("sidebar");
+  const sidebar = screen.getByRole("complementary");
   expect(sidebar).toHaveTextContent("3.38 €");
   expect(sidebar).toHaveTextContent("3.72 €");
   expect(sidebar).toHaveTextContent("Total - 7.1 €");

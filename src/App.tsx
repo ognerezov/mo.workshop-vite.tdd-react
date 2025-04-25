@@ -101,6 +101,9 @@ const App = () => {
             ))}
           </ul>
           <div>
+            <span>Total - {totals.reduce((acc, curr) => acc + curr, 0)} €</span>
+          </div>
+          <div>
             <button onClick={clearInputs}>Limpiar</button>
           </div>
         </aside>
