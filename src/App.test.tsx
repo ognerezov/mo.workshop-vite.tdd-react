@@ -210,6 +210,7 @@ it("should see the product name for each weighed product in the sidebar", async 
   expect(sidebar).toHaveTextContent("Sandía - 3.72 €");
 });
 
+// TODO: this test is duplicated by should see an error when you calculate the total without the pricev
 it("should identify the type of the error when the price is 0", async () => {
   render(<App />);
 
@@ -220,6 +221,7 @@ it("should identify the type of the error when the price is 0", async () => {
   expect(screen.getByText("Error: precio es requerido")).toBeInTheDocument();
 });
 
+// TODO: this test is duplicated by should see an error if there is not weight
 it("should identify the type of the error when the weight is 0", async () => {
   render(<App />);
 
