@@ -9,16 +9,18 @@ const validateInputs = (weight: number, chosenProductPrice: number) => {
 const App = () => {
   const [error, setError] = useState(false);
   const [chosenProductPrice, setChosenProductPrice] = useState(0);
+  const [chosenProductName, setChosenProductName] = useState<string>('');
   const [weight, setWeight] = useState("");
   const [total, setTotal] = useState(0);
   const [totals, setTotals] = useState<number[]>([]);
   const [chosenProducts, setChosenProducts] = useState<string[]>([]);
+  
   const totalSum = useMemo(() => totals.reduce((acc, curr) => acc + curr, 0), [totals]);
 
   const chooseProduct = (price: number, name: string) => {
     setChosenProductPrice(price);
     setError(false);
-    setChosenProducts((chosenProducts) => [...chosenProducts, name]);
+    setChosenProductName(name);
   };
 
   const calculateTotal = () => {
@@ -33,6 +35,7 @@ const App = () => {
     const totalPrice = chosenProductPrice * weightNumber;
     setTotal(totalPrice);
     setTotals((totals) => [...totals, totalPrice]);
+    setChosenProducts((chosenProducts) => [...chosenProducts, chosenProductName]);
   };
 
   const clearInputs = () => {
