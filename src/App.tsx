@@ -2,56 +2,42 @@ import { useState, useMemo } from "react";
 import products from "./products.json";
 import { Product } from "./types";
 
-const validateInputs = (weight: number, chosenProductPrice: number) => {
-  return !chosenProductPrice || !weight;
-};
-
 const App = () => {
-  const [error, setError] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('Error');
+  const isError = false;
   const [chosenProductPrice, setChosenProductPrice] = useState(0);
-  const [chosenProductName, setChosenProductName] = useState<string>('');
+  const [chosenProductName, setChosenProductName] = useState<string>("");
   const [weight, setWeight] = useState("");
   const [total, setTotal] = useState(0);
-  const [weightedProducts, setWeightedProducts] = useState<{name: string, price: number}[]>([]);
-  
-  const totalSum = useMemo(() => weightedProducts.reduce((acc, weightedProduct) => acc + weightedProduct.price, 0), [weightedProducts]);
+  const [weightedProducts, setWeightedProducts] = useState<
+    { name: string; price: number }[]
+  >([]);
+
+  const totalSum = useMemo(
+    () =>
+      weightedProducts.reduce(
+        (acc, weightedProduct) => acc + weightedProduct.price,
+        0
+      ),
+    [weightedProducts]
+  );
 
   const chooseProduct = (price: number, name: string) => {
     setChosenProductPrice(price);
-    setError(false);
     setChosenProductName(name);
   };
 
   const calculateTotal = () => {
     const weightNumber = Number(weight);
-    const isError = validateInputs(weightNumber, chosenProductPrice);
-
-    setError(isError);
-    if (isError) {
-      if(chosenProductPrice === 0 && weightNumber === 0) {
-        setErrorMessage('Error: peso y precio son requeridos');
-        return;
-      }
-      if(chosenProductPrice === 0) {
-        setErrorMessage('Error: precio es requerido');
-        return;
-      }
-      if(weightNumber === 0) {
-        setErrorMessage('Error: peso es requerido');
-        return;
-      }
-
-      return;
-    }
 
     const totalPrice = chosenProductPrice * weightNumber;
     setTotal(totalPrice);
-    setWeightedProducts((weightedProducts) => [...weightedProducts, {name: chosenProductName, price: totalPrice}]);
+    setWeightedProducts((weightedProducts) => [
+      ...weightedProducts,
+      { name: chosenProductName, price: totalPrice },
+    ]);
   };
 
   const clearInputs = () => {
-    setError(false);
     setChosenProductPrice(0);
     setTotal(0);
     setWeight("");
@@ -115,7 +101,9 @@ const App = () => {
           </div>
           <ul>
             {weightedProducts.map((product, index) => (
-              <li key={index}>{product.name} - {product.price} €</li>
+              <li key={index}>
+                {product.name} - {product.price} €
+              </li>
             ))}
           </ul>
           <div>
@@ -126,7 +114,7 @@ const App = () => {
           </div>
         </aside>
       </div>
-      {error && <div className="error">{errorMessage}</div>}
+      {isError && <div className="error"></div>}
     </div>
   );
 };

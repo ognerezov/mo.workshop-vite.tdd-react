@@ -71,16 +71,6 @@ it("should calculate the total", async () => {
   expect(totalInput).toHaveValue(3.38);
 });
 
-it("should see an error when you calculate the total without the price", async () => {
-  render(<App />);
-
-  const weightInput = screen.getByLabelText("Peso:");
-  await userEvent.type(weightInput, "2");
-  await userEvent.click(screen.getByText("Calcular"));
-
-  expect(screen.getByText("Error: precio es requerido")).toBeInTheDocument();
-});
-
 it("should clear the error when select a fruit", async () => {
   render(<App />);
 
@@ -88,16 +78,6 @@ it("should clear the error when select a fruit", async () => {
   await userEvent.click(screen.getByLabelText("Sandía"));
 
   expect(screen.queryByText("Error")).not.toBeInTheDocument();
-});
-
-it("should see an error if there is not weight", async () => {
-  render(<App />);
-
-  const bananaButton = screen.getByLabelText("Plátano");
-  await userEvent.click(bananaButton);
-  await userEvent.click(screen.getByText("Calcular"));
-
-  expect(screen.getByText("Error: peso es requerido")).toBeInTheDocument();
 });
 
 it("should clear the input values", async () => {
@@ -208,44 +188,4 @@ it("should see the product name for each weighed product in the sidebar", async 
   const sidebar = screen.getByRole("complementary");
   expect(sidebar).toHaveTextContent("Plátano - 3.38 €");
   expect(sidebar).toHaveTextContent("Sandía - 3.72 €");
-});
-
-// TODO: this test is duplicated by should see an error when you calculate the total without the pricev
-it("should identify the type of the error when the price is 0", async () => {
-  render(<App />);
-
-  const weightInput = screen.getByLabelText("Peso:");
-  await userEvent.type(weightInput, "2");
-  await userEvent.click(screen.getByText("Calcular"));
-
-  expect(screen.getByText("Error: precio es requerido")).toBeInTheDocument();
-});
-
-// TODO: this test is duplicated by should see an error if there is not weight
-it("should identify the type of the error when the weight is 0", async () => {
-  render(<App />);
-
-  const bananaButton = screen.getByLabelText("Plátano");
-  await userEvent.click(bananaButton);
-  await userEvent.click(screen.getByText("Calcular"));
-
-  expect(screen.getByText("Error: peso es requerido")).toBeInTheDocument();
-});
-
-it("should identify the type of the error when the weight and price are 0", async () => {
-  render(<App />);
-
-  await userEvent.click(screen.getByText("Calcular"));
-
-  expect(screen.getByText("Error: peso y precio son requeridos")).toBeInTheDocument();
-});
-
-it.skip("should be able to clean the list", () => {});
-
-it.skip("should be able to remove a product from the list", () => {});
-
-describe("Regression tests", () => {
-  it.skip("should not add a product to the list if there is an error");
-
-  it.skip("should see the prices with maximum two decimals");
 });
