@@ -1,8 +1,8 @@
-import products from "./products.json";
-import { Product } from "./types";
+import products from './products.json'
+import { Product } from 'types'
 
 const App = () => {
-  const isError = false;
+  const isError = false
 
   return (
     <div className="app">
@@ -39,7 +39,7 @@ const App = () => {
               >
                 <img src={product.image} alt="" />
               </button>
-            );
+            )
           })}
         </div>
         <aside className="sidebar">
@@ -59,7 +59,7 @@ const App = () => {
       </div>
       {isError && <div className="error"></div>}
     </div>
-  );
-};
+  )
+}
 
-export default App;
+export default App
