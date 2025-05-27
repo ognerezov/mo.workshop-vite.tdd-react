@@ -13,8 +13,8 @@ Hola 👋 Somos el equipo de Frontend de Mercadona Tech. Nuestra intención con 
 - Cómo iterar un producto añadiendo funcionalidad de forma progresiva.
 - Cómo desarrollar un producto desde el punto de viste del usuario.
 - Cómo colaborar de forma efectiva haciendo _pair programming_.
-​
-Aunque todos estos principios se puede aplicar a cualquier tecnología, nos centraremos en las tecnologías que utilizamos para desarrollar la web de Mercadona Online:
+  ​
+  Aunque todos estos principios se puede aplicar a cualquier tecnología, nos centraremos en las tecnologías que utilizamos para desarrollar la web de Mercadona Online:
   ​
 - HTML + CSS
 - JavaScript
@@ -50,11 +50,6 @@ Una vez hayas hecho un _fork_ de este repositorio, puedes clonarlo a tu ordenado
 git clone git@github.com:mercadona/mo.workshop-vite.tdd-react
 ```
 
-Cámbiate a la rama `start-point`
-
-```bash
-git checkout start-point
-```
 ​
 Para comenzar primero debemos instalar las dependencias del proyecto:
 ​
