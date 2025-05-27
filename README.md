@@ -19,7 +19,7 @@ Aunque todos estos principios se puede aplicar a cualquier tecnología, nos cent
 - HTML + CSS
 - JavaScript
 - React
-- Jest + Testing Library
+- Vitest + Testing Library
 
 ### Conocimiento previo
 
@@ -36,7 +36,7 @@ Este taller asume un conocimiento básico de HTML, CSS y JavaScript. También se
 ​CodeSandbox es un editor de código online que nos permite trabajar desde nuestro navegador en un entorno con todas las tecnologías necesarias para nuestro proyecto ya instaladas. Para empezar, sigue estos pasos:
 
 1. Regístrate o accede a tu cuenta en [CodeSandbox](https://codesandbox.io)
-2. Accede al proyecto de este taller 👉 [Proyecto en CodeSandbox](https://codesandbox.io/s/workshop-react-tdd-zp19v)
+2. Accede al proyecto de este taller 👉 [Proyecto en CodeSandbox](https://codesandbox.io/p/devbox/react-vite-tdd-8xxtfy)
    ​
 
 ### Opción B: Local
@@ -47,10 +47,16 @@ Una vez hayas hecho un _fork_ de este repositorio, puedes clonarlo a tu ordenado
 ​
 
 ```bash
-git clone git@github.com:mercadona/mo.workshop.tdd-react.git
+git clone git@github.com:mercadona/mo.workshop-vite.tdd-react
 ```
 
-​Para comenzar primero debemos instalar las dependencias del proyecto:
+Cámbiate a la rama `start-point`
+
+```bash
+git checkout start-point
+```
+​
+Para comenzar primero debemos instalar las dependencias del proyecto:
 ​
 
 ```bash
