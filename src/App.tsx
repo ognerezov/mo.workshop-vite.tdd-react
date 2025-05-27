@@ -14,17 +14,11 @@ const App = () => {
 
         <label htmlFor="price">
           Precio:
-          <input
-            id="price"
-            type="number"
-            placeholder="0,000"
-            readOnly
-            disabled
-          />
+          <input id="price" type="number" placeholder="0,000" readOnly />
         </label>
         <label htmlFor="total">
           Total:
-          <input id="total" type="number" placeholder="0,000" disabled />
+          <input id="total" type="number" placeholder="0,000" readOnly />
         </label>
       </div>
       <div className="controls">
@@ -45,6 +39,7 @@ const App = () => {
         <aside className="sidebar">
           <div>
             <button>Calcular</button>
+            <button>Limpiar</button>
           </div>
           <ul>
             <li></li>
@@ -52,9 +47,7 @@ const App = () => {
           <div>
             <span>Total</span>
           </div>
-          <div>
-            <button>Limpiar</button>
-          </div>
+          <div></div>
         </aside>
       </div>
       {isError && <div className="error"></div>}
