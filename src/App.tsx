@@ -47,7 +47,6 @@ const App = () => {
           <div>
             <span>Total</span>
           </div>
-          <div></div>
         </aside>
       </div>
       {isError && <div className="error"></div>}
