@@ -39,13 +39,6 @@ const App = () => {
         <aside className="sidebar">
           <div>
             <button>Calcular</button>
-            <button>Limpiar</button>
-          </div>
-          <ul>
-            <li></li>
-          </ul>
-          <div>
-            <span>Total</span>
           </div>
         </aside>
       </div>
