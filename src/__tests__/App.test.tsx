@@ -19,7 +19,3 @@ it('should see the scale app', () => {
   expect(mango).toBeInTheDocument()
   expect(calculateButton).toBeInTheDocument()
 })
-
-it('should be able to introduce a weight', async () => {
-  render(<App />)
-})
