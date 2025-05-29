@@ -11,7 +11,7 @@
 
 1. Regístrate o accede a tu cuenta en [CodeSandbox](https://codesandbox.io)
 2. Accede al proyecto de este taller 👉 [Proyecto en CodeSandbox](https://codesandbox.io/p/devbox/react-vite-tdd-8xxtfy)
-   ​
+3. Haz fork
 
 ### Opción B: Local
 
